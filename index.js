@@ -81,8 +81,15 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model,milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+
+  Car.prototype.fill = function(gallons){
+    this.tank += gallons;
   }
   
   
@@ -93,18 +100,26 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(name, age, favoriteToy) {
+   Person.call(this,name,age, favoriteToy);
+   this.favoriteToy = favoriteToy;
   }
+  Baby.prototype = Object.create(Person.prototype);
+
+  Baby.prototype.play = function (){
+    return `Playing with ${this.favoriteToy}`;
+  }
+
  
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Don't use in global scope
+    2. In most cases see object before the dot, this points on it
+    3. Whenever a constructor function is used, this refers to the specific instance of the object that is created and returned by the constructor function.
+    4. Whenever JavaScript’s call or apply method is used, this is explicitly defined.
+
   */
   
   
