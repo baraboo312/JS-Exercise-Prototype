@@ -91,6 +91,24 @@ function Airplane(name) {
   Car.prototype.fill = function(gallons){
     this.tank += gallons;
   }
+
+  Car.prototype.drive = function(distance){
+    if (this.tank === 0){
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }
+    else {
+      let total_fuel = distance/this.milesPerGallon;
+      if (total_fuel < this.tank){
+        this.tank -= total_fuel;
+        this.odometer += distance;
+      }
+      else{
+        this.odometer += this.tank*this.milesPerGallon;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`
+      }
+    }
+  }
   
   
   /*
@@ -109,6 +127,11 @@ function Airplane(name) {
   Baby.prototype.play = function (){
     return `Playing with ${this.favoriteToy}`;
   }
+
+  // const Lara = new Baby('Lara',1,'ball');
+
+  // Lara.eat('meat')
+  // console.log(Lara.stomach)
 
  
   
